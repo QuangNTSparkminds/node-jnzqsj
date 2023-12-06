@@ -4,6 +4,7 @@ const joi = require('joi');
 const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
+const cors = require("cors");
 
 import { Request, Response } from 'express';
 
@@ -70,10 +71,15 @@ const validator =
     }
   };
 
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(bodyParser.json());
 
 // Request body -> UserDto
-app.get(
+app.post(
   '/register',
   validator(registerSchema),
   async (req: Request, res: Response) => {
