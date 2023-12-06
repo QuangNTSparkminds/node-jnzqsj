@@ -71,11 +71,8 @@ const validator =
     }
   };
 
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors());
+app.options('*', cors());
 app.use(bodyParser.json());
 
 // Request body -> UserDto
